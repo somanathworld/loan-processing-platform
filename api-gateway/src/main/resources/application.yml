@@ -30,3 +30,6 @@ eureka:
 
 server:
   port: 8080
+
+main:
+  web-application-type: reactive
