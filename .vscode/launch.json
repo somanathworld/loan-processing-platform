@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "RestConsumer",
+            "request": "launch",
+            "mainClass": "com.example.rest_consumer.RestConsumer",
+            "projectName": "rest-consumer"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "AuthenticationServiceApplication",
+            "request": "launch",
+            "mainClass": "com.gs.AuthenticationServiceApplication",
+            "projectName": "AuthenticationServiceApplication"
+        },
+        {
+            "type": "java",
+            "name": "DiscoveryServerApplication",
+            "request": "launch",
+            "mainClass": "com.gs.DiscoveryServerApplication",
+            "projectName": "DiscoveryServerApplication"
+        },
+        {
+            "type": "java",
+            "name": "UserServiceApplication",
+            "request": "launch",
+            "mainClass": "com.gs.UserServiceApplication",
+            "projectName": "UserServiceApplication"
+        },
+        {
+            "type": "java",
+            "name": "ApiGatewayApplication",
+            "request": "launch",
+            "mainClass": "com.gs.ApiGatewayApplication",
+            "projectName": "api-gateway"
+        },
+        {
+            "type": "java",
+            "name": "LoanServiceApplication",
+            "request": "launch",
+            "mainClass": "com.gs.LoanServiceApplication",
+            "projectName": "loan-service"
+        }
+    ]
+}
