@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "RestConsumerApplication",
+            "request": "launch",
+            "mainClass": "com.example.rest_consumer.RestConsumerApplication",
+            "projectName": "rest-consumer"
+        },
+        {
+            "type": "java",
             "name": "RestConsumer",
             "request": "launch",
             "mainClass": "com.example.rest_consumer.RestConsumer",
