@@ -1,1 +1,7 @@
 /workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/LoanServiceApplication.java
+/workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/controller/LoanServicesController.java
+/workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/event/LoanEvent.java
+/workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/model/LoanRequest.java
+/workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/producer/KafkaProducerConfig.java
+/workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/security/HeaderAuthenticationFilter.java
+/workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/security/SecurityConfig.java
