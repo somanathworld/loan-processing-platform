@@ -112,3 +112,11 @@ mvn clean package
 docker build
 docker push (optional)
 docker-compose up -d
+
+
+1. Parent Folder creation - Loan-processing-platform ✅ 
+2. Child folder creation - auth-service, user-service, discovery-servcie....
+3. Create a Spring boot project in all child services folder
+4. Create demo template for all the child sevice : rest endpoints to check whther request are successfully parsed.
+5. Create Dockerfile  and docker-compose file in parent folder for checking all child services for integrating with each other.
+6. Perform coding as per the phases as mentioned above
