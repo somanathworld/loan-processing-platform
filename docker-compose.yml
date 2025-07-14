@@ -58,6 +58,22 @@ services:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
+  credit-score-service:
+    build: ./credit-score-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - discovery-server
+      - kafka
+      - redis
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379  
+    networks:
+      - backend
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.2.1
     ports:
@@ -81,6 +97,13 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
 
 networks:
   backend:

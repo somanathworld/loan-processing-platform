@@ -145,6 +145,16 @@ public class RestConsumer {
         return response.getBody();
     }
 
+    public String getCreditScore(String token, String customerId) {
+        String url = "http://localhost:8080/scores/" + customerId;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token); // Sets "Authorization: Bearer <token>"
+        HttpEntity<String> request = new HttpEntity<>(headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
+        System.out.println("Credit score response: " + response.getBody());
+        return response.getBody();
+    }
     public static void main(String[] args) {
 
         RestConsumer client = new RestConsumer();
@@ -160,8 +170,8 @@ public class RestConsumer {
                     client.uploadKYC(token, "68714419089e5f073d531f41",
                             "/workspaces/loan-processing-platform/docker-compose.yml"));
             System.out.println(client.loanStatus(token));
-            System.out.println(client.applyForLoan(token, "12344", "2344L", 30000.00));
-
+            System.out.println(client.applyForLoan(token, "12347", "2344L", 30000.00));
+            System.out.println(client.getCreditScore(token, "12347"));
         } else {
             System.out.println("Login failed");
         }
