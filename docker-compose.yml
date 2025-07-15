@@ -58,6 +58,19 @@ services:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
+  notification-service:
+    build: ./notification-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - discovery-server
+      - kafka
+    networks:
+      - backend
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.2.1
     ports:
