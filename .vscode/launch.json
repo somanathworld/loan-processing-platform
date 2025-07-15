@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CreditScoreServiceApplication",
+            "request": "launch",
+            "mainClass": "com.gs.CreditScoreServiceApplication",
+            "projectName": "credit-score-service"
+        },
+        {
+            "type": "java",
             "name": "NotificationServiceApplication",
             "request": "launch",
             "mainClass": "com.gs.NotificationServiceApplication",

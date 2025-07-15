@@ -1,0 +1,8 @@
+/workspaces/loan-processing-platform/credit-score-service/src/main/java/com/gs/CreditScoreServiceApplication.java
+/workspaces/loan-processing-platform/credit-score-service/src/main/java/com/gs/config/RedisConfig.java
+/workspaces/loan-processing-platform/credit-score-service/src/main/java/com/gs/consumer/KafkaConsumerConfig.java
+/workspaces/loan-processing-platform/credit-score-service/src/main/java/com/gs/controller/CreditScoreController.java
+/workspaces/loan-processing-platform/credit-score-service/src/main/java/com/gs/event/LoanEvent.java
+/workspaces/loan-processing-platform/credit-score-service/src/main/java/com/gs/security/HeaderAuthenticationFilter.java
+/workspaces/loan-processing-platform/credit-score-service/src/main/java/com/gs/security/SecurityConfig.java
+/workspaces/loan-processing-platform/credit-score-service/src/main/java/com/gs/service/CreditScoreConsumer.java
