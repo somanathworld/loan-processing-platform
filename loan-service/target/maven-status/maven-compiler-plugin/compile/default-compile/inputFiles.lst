@@ -9,4 +9,5 @@
 /workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/security/HeaderAuthenticationFilter.java
 /workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/security/SecurityConfig.java
 /workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/service/ILoanMgmtService.java
+/workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/service/LoanKafkaProducer.java
 /workspaces/loan-processing-platform/loan-service/src/main/java/com/gs/service/LoanMgmtServiceImpl.java
