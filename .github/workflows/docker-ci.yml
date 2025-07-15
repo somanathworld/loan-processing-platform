@@ -26,9 +26,9 @@ jobs:
         cd user-service && mvn clean package -DskipTests && cd ..
         cd loan-service && mvn clean package -DskipTests && cd ..
         cd credit-score-service && mvn clean package -DskipTests && cd ..
-        cd notification-service && mvn clean package -DskipTests && cd ..
         cd discovery-server && mvn clean package -DskipTests && cd ..
         cd api-gateway && mvn clean package -DskipTests && cd ..
+#        cd notification-service && mvn clean package -DskipTests && cd ..
 
 
     - name: Docker Build
