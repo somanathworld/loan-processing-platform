@@ -20,8 +20,16 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Build with Maven
-      run: mvn clean package -DskipTests
+    - name: Build each service with Maven
+      run: |
+        cd auth-service && mvn clean package -DskipTests && cd ..
+        cd user-service && mvn clean package -DskipTests && cd ..
+        cd loan-service && mvn clean package -DskipTests && cd ..
+        cd credit-score-service && mvn clean package -DskipTests && cd ..
+        cd notification-service && mvn clean package -DskipTests && cd ..
+        cd discovery-server && mvn clean package -DskipTests && cd ..
+        cd api-gateway && mvn clean package -DskipTests && cd ..
+
 
     - name: Docker Build
       run: |
