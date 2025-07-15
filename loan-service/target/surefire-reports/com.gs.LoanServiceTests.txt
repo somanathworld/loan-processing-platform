@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.gs.LoanServiceTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.130 s -- in com.gs.LoanServiceTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.550 s -- in com.gs.LoanServiceTests
