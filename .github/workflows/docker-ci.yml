@@ -20,6 +20,12 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
+    - name: Install Docker Compose
+      run: |
+        sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+        docker-compose version
+
     - name: Build each service with Maven
       run: |
         cd auth-service && mvn clean package -DskipTests && cd ..
