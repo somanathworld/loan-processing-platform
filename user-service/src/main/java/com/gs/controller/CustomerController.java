@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gs.document.Customer;
+import com.gs.dto.CustomerDTO;
 import com.gs.service.ICustomerMgmtService;
 
 @RestController
@@ -32,15 +34,41 @@ public class CustomerController {
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @GetMapping("/status/admin")
-    public String getUserStatus2() {
+    @GetMapping("/health/admin")
+    public String getHelth() {
         return "User Service is running";
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/status")
-    public String getUserStatus() {
+    @GetMapping("/info")
+    public String getInfo() {
         return "User Service is running";
+    }
+
+    @GetMapping("/status/{userId}")
+    public ResponseEntity<String> getUserStatus(@PathVariable("userId") String userId){
+        Customer cust = customerService.getCustomerById(userId);
+        if(cust != null){
+            return ResponseEntity.ok(cust.getStatus() == null ? "ACTIVE": cust.getStatus());
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_EXTENDED).body("User not found.");
+        }
+    }
+
+    @GetMapping("/info/{id}")
+    public ResponseEntity<?> getUserInfo(@PathVariable String id) {
+        Customer cust = customerService.getCustomerById(id);
+        if(cust != null){
+            CustomerDTO dto = new CustomerDTO();
+            dto.setCustomerId(cust.getId());
+            dto.setEmail(cust.getEmail());
+            dto.setName(cust.getName());
+            dto.setStatus(cust.getStatus());
+
+            return ResponseEntity.ok(dto);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+        }
     }
 
     @PostMapping("/register")

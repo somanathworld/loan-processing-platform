@@ -25,7 +25,7 @@ public class UserServiceTests {
 
     @Test   
     void testPublicStatusEndpoint() throws Exception {
-        mockMvc.perform(get("/users/status")
+        mockMvc.perform(get("/users/info")
                 .header("X-User", "adminUser")
                 .header("X-Roles", "ROLE_ADMIN"))
                 .andExpect(status().isOk())
@@ -34,7 +34,7 @@ public class UserServiceTests {
 
     @Test
     void testSecureAdminEndpointWithRoleAdmin() throws Exception {
-        mockMvc.perform(get("/users/status/admin")
+        mockMvc.perform(get("/users//health/admin")
                 .header("X-User", "adminUser")
                 .header("X-Roles", "ROLE_ADMIN"))
                 .andExpect(status().isOk())
@@ -43,7 +43,7 @@ public class UserServiceTests {
 
     @Test
     void testSecureAdminEndpointWithRoleUserOnly() throws Exception {
-        mockMvc.perform(get("/users/status/admin")
+        mockMvc.perform(get("/users/health/admin")
                 .header("X-User", "normalUser")
                 .header("X-Roles", "ROLE_USER"))
                 .andExpect(status().isForbidden());
@@ -51,7 +51,7 @@ public class UserServiceTests {
 
     @Test
     void testSecureEndpointWithoutHeaders() throws Exception {
-        mockMvc.perform(get("/users/status/admin"))
+        mockMvc.perform(get("/users//health/admin"))
                 .andExpect(status().isForbidden());
     }
 }
