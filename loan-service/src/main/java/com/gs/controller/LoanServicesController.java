@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gs.clients.UserServiceClient;
 import com.gs.event.LoanEvent;
 import com.gs.model.Loan;
 import com.gs.model.LoanRequest;
@@ -27,6 +29,9 @@ public class LoanServicesController {
 
     @Autowired
     private ILoanMgmtService loanMgmtService;
+
+    @Autowired
+    private UserServiceClient userClient;
 
     @Autowired
     private KafkaTemplate<String, LoanEvent> kafkaTemplate;
@@ -43,7 +48,15 @@ public class LoanServicesController {
 
     @PostMapping("/apply")
     public ResponseEntity<String> apply(@RequestBody LoanRequest request) {
+        //Generate the unique id for loan
         String loanId = UUID.randomUUID().toString();
+
+        // Fetch user status from user-service
+        String status = userClient.getUserStatus(request.getCustomerId());
+
+        if ("INACTIVE".equalsIgnoreCase(status)) {
+            return ResponseEntity.status(HttpStatus.LOCKED).body("User is not active");
+        }
 
         Loan loan = new Loan();
         loan.setLoanId(loanId);

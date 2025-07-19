@@ -1,4 +1,4 @@
-package com.gs.security;
+package com.gs.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.gs.security.HeaderAuthenticationFilter;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
