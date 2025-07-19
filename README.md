@@ -1,4 +1,5 @@
 System Architecture
+
 ====================
                    ┌────────────────────────────┐
                    │     API Gateway (Zuul / Spring Cloud Gateway)     │
