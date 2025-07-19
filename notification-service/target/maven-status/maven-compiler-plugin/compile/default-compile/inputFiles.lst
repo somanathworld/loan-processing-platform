@@ -1,5 +1,7 @@
 /workspaces/loan-processing-platform/notification-service/src/main/java/com/gs/NotificationServiceApplication.java
+/workspaces/loan-processing-platform/notification-service/src/main/java/com/gs/client/UserServiceClient.java
 /workspaces/loan-processing-platform/notification-service/src/main/java/com/gs/consumer/KafkaConsumerConfig.java
+/workspaces/loan-processing-platform/notification-service/src/main/java/com/gs/dto/CustomerDTO.java
 /workspaces/loan-processing-platform/notification-service/src/main/java/com/gs/event/LoanStatusEvent.java
 /workspaces/loan-processing-platform/notification-service/src/main/java/com/gs/service/EmailService.java
 /workspaces/loan-processing-platform/notification-service/src/main/java/com/gs/service/NotificationListener.java

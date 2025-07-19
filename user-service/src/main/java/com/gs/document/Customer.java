@@ -14,6 +14,7 @@ public class Customer {
     private String name;
     private String email;
     private String phone;
+    private String status;
     private String kycFilePath; // file system path
 
     // Getters & Setters

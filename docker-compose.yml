@@ -73,6 +73,7 @@ services:
       - SPRING_REDIS_PORT=6379  
     networks:
       - backend
+      
   notification-service:
     build: ./notification-service
     ports:

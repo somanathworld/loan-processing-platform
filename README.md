@@ -113,6 +113,14 @@ docker build
 docker push (optional)
 docker-compose up -d
 
+🔹 Phase 7: Inter-Service Communication
+Real World Use-Case in Your Project:
+Your loan-service may need to:
+Fetch user details from user-service
+Send loan approval status to notification-service
+
+🔹 Phase 8: Distributed Logging & Tracing
+✅ Focus: Observe and trace all microservice interactions.
 
 1. Parent Folder creation - Loan-processing-platform ✅ 
 2. Child folder creation - auth-service, user-service, discovery-servcie....

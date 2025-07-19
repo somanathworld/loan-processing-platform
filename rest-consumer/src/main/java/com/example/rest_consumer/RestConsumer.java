@@ -59,7 +59,7 @@ public class RestConsumer {
     }
 
     public String getProtectedResource2(String token) {
-        String url = "http://localhost:8080/users/status"; // Change to your protected endpoint
+        String url = "http://localhost:8080/users/info"; // Change to your protected endpoint
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token); // Sets "Authorization: Bearer <token>"
         HttpEntity<String> request = new HttpEntity<>(headers);
@@ -71,7 +71,7 @@ public class RestConsumer {
     }
 
     public String getProtectedResource3(String token) {
-        String url = "http://localhost:8080/users/status/admin"; // Change to your protected endpoint
+        String url = "http://localhost:8080/users/health/admin"; // Change to your protected endpoint
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token); // Sets "Authorization: Bearer <token>"
         HttpEntity<String> request = new HttpEntity<>(headers);
@@ -82,11 +82,7 @@ public class RestConsumer {
         return response.getBody();
     }
 
-    public void healthCheck() {
-        String url = "http://localhost:8080/users/status";
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        System.out.println("Health check response: " + response.getBody());
-    }
+    
 
     public String registerCustomer(String token) {
         String url = "http://localhost:8080/users/register";
@@ -130,14 +126,13 @@ public class RestConsumer {
         return response.getBody();
     }
 
-    public String applyForLoan(String token, String customerId, String loanId, double amount) {
+    public String applyForLoan(String token, String customerId, double amount) {
         String url = "http://localhost:8080/loans/apply";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(token); // Sets "Authorization: Bearer <token>"
 
-        String body = String.format("{\"customerId\":\"%s\", \"loanId\":\"%s\", \"amount\":%.2f}", customerId, loanId,
-                amount);
+        String body = String.format("{\"customerId\":\"%s\", \"amount\":%.2f}", customerId,  amount);
         HttpEntity<String> request = new HttpEntity<>(body, headers);
 
         ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
@@ -166,6 +161,7 @@ public class RestConsumer {
         System.out.println("Credit score response: " + response.getBody());
         return response.getBody();
     }
+
     public static void main(String[] args) {
 
         RestConsumer client = new RestConsumer();
@@ -173,21 +169,22 @@ public class RestConsumer {
         String token = client.login("john1", "12345");
         if (token != null) {
             System.out.println("Login successful, token: " + token);
-            //  client.getProtectedResource(token);
-            // client.getProtectedResource2(token);
-            // client.getProtectedResource3(token);
-            // System.out.println(client.registerCustomer(token));
-            // System.out.println(
-            //         client.uploadKYC(token, "68714419089e5f073d531f41",
-            //                 "/workspaces/loan-processing-platform/docker-compose.yml"));
-            // System.out.println(client.loanStatus(token));
-            // System.out.println(client.applyForLoan(token, "12344", "2344L", 30000.00));
-            System.out.println(
-                    client.uploadKYC(token, "68714419089e5f073d531f41",
-                            "/workspaces/loan-processing-platform/docker-compose.yml"));
-            System.out.println(client.loanStatus(token));
-            System.out.println(client.applyForLoan(token, "12344", "2344L", 30000.00));
-
+            client.getProtectedResource(token);
+            client.getProtectedResource2(token);
+            client.getProtectedResource3(token);
+            client.registerCustomer(token);
+            client.uploadKYC(token, "68714419089e5f073d531f41",
+                    "/workspaces/loan-processing-platform/docker-compose.yml");
+            client.loanStatus(token);
+            client.applyForLoan(token, "687b29e94e36203261e8194d" , 30000.00);
+            try{
+                Thread.sleep(7000);
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+            client.getCreditScore(token, "687b29e94e36203261e8194d");
+            client.approveLoan(token, "6836d5dd-38e9-4686-a7a0-878761827ce9");
+           
         } else {
             System.out.println("Login failed");
         }
