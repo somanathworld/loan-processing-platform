@@ -1,9 +1,0 @@
-com/gs/controller/CustomerController.class
-com/gs/UserServiceApplication.class
-com/gs/document/Customer.class
-com/gs/repository/ICustomerRepository.class
-com/gs/security/SecurityConfig.class
-com/gs/security/HeaderAuthenticationFilter.class
-com/gs/service/CustomerMgmtServiceImpl.class
-com/gs/dto/CustomerDTO.class
-com/gs/service/ICustomerMgmtService.class

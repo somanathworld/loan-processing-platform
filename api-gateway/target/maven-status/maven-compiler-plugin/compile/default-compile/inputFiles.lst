@@ -1,3 +1,0 @@
-/workspaces/loan-processing-platform/api-gateway/src/main/java/com/gs/ApiGatewayApplication.java
-/workspaces/loan-processing-platform/api-gateway/src/main/java/com/gs/filter/JwtAuthenticationFilter.java
-/workspaces/loan-processing-platform/api-gateway/src/main/java/com/gs/filter/JwtValidationFilter.java

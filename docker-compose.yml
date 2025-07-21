@@ -6,6 +6,8 @@ services:
     build: ./discovery-server
     ports:
       - "8761:8761"
+    environment:
+      - ZIPKIN_BASE_URL=http://zipkin:9411/api/v2/spans
     networks:
       - backend
 
@@ -22,6 +24,7 @@ services:
       - backend
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+      - ZIPKIN_BASE_URL=http://zipkin:9411/api/v2/spans
 
   auth-service:
     build: ./auth-service
@@ -33,6 +36,7 @@ services:
       - backend
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+      - ZIPKIN_BASE_URL=http://zipkin:9411/api/v2/spans
 
   user-service:
     build: ./user-service
@@ -44,6 +48,7 @@ services:
       - backend
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+      - ZIPKIN_BASE_URL=http://zipkin:9411/api/v2/spans
 
   loan-service:
     build: ./loan-service
@@ -57,6 +62,7 @@ services:
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - ZIPKIN_BASE_URL=http://zipkin:9411/api/v2/spans
 
   credit-score-service:
     build: ./credit-score-service
@@ -71,6 +77,7 @@ services:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
       - SPRING_REDIS_HOST=redis
       - SPRING_REDIS_PORT=6379  
+      - ZIPKIN_BASE_URL=http://zipkin:9411/api/v2/spans 
     networks:
       - backend
       
@@ -86,6 +93,7 @@ services:
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - ZIPKIN_BASE_URL=http://zipkin:9411/api/v2/spans
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.2.1
@@ -107,7 +115,7 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1      
     depends_on:
       - zookeeper
 
@@ -115,6 +123,13 @@ services:
     image: redis:7
     ports:
       - "6379:6379"
+    networks:
+      - backend
+
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
     networks:
       - backend
 
