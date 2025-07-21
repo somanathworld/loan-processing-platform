@@ -41,3 +41,21 @@ server:
 
 main:
   web-application-type: reactive
+
+management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_BASE_URL:http://localhost:9411/api/v2/spans}
+
+logging:
+  pattern:
+    level: "%5p [traceId=%X{traceId}, spanId=%X{spanId}]"
+  level:
+    root: INFO
+    com.gs: DEBUG
+  file:
+    name: logs/api-gateway.log

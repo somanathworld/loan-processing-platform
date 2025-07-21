@@ -1,9 +1,0 @@
-/workspaces/loan-processing-platform/user-service/src/main/java/com/gs/UserServiceApplication.java
-/workspaces/loan-processing-platform/user-service/src/main/java/com/gs/controller/CustomerController.java
-/workspaces/loan-processing-platform/user-service/src/main/java/com/gs/document/Customer.java
-/workspaces/loan-processing-platform/user-service/src/main/java/com/gs/dto/CustomerDTO.java
-/workspaces/loan-processing-platform/user-service/src/main/java/com/gs/repository/ICustomerRepository.java
-/workspaces/loan-processing-platform/user-service/src/main/java/com/gs/security/HeaderAuthenticationFilter.java
-/workspaces/loan-processing-platform/user-service/src/main/java/com/gs/security/SecurityConfig.java
-/workspaces/loan-processing-platform/user-service/src/main/java/com/gs/service/CustomerMgmtServiceImpl.java
-/workspaces/loan-processing-platform/user-service/src/main/java/com/gs/service/ICustomerMgmtService.java
