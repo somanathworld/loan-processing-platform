@@ -2,8 +2,9 @@ package com.gs.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,8 @@ public class CustomerController {
     @Autowired
     private ICustomerMgmtService customerService;
 
+    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
+
     @GetMapping("/public")
     public String anyoneCanAccess() {
         return "Public endpoint";
@@ -42,6 +45,8 @@ public class CustomerController {
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/info")
     public String getInfo() {
+
+        logger.info("🔍 [UserService] Handling /users/status - TraceID: {}");
         return "User Service is running";
     }
 
