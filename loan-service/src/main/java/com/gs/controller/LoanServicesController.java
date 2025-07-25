@@ -1,7 +1,6 @@
 package com.gs.controller;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,24 +13,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.gs.clients.UserServiceClient;
 import com.gs.event.LoanEvent;
+import com.gs.fallback.UserServiceFallback;
 import com.gs.model.Loan;
 import com.gs.model.LoanRequest;
 import com.gs.model.LoanStatus;
 import com.gs.service.ILoanMgmtService;
 import com.gs.service.LoanKafkaProducer;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/loans")
+@Slf4j
 public class LoanServicesController {
 
     @Autowired
     private ILoanMgmtService loanMgmtService;
 
     @Autowired
-    private UserServiceClient userClient;
+    private UserServiceFallback userClient;
 
     @Autowired
     private KafkaTemplate<String, LoanEvent> kafkaTemplate;
@@ -40,10 +44,13 @@ public class LoanServicesController {
     @Autowired 
     private LoanKafkaProducer kafkaProducer;
 
-    @GetMapping("/status")
-    public ResponseEntity<String> getLoanStatus() {
+   
+  
+    @GetMapping("/status/{userId}")
+    public ResponseEntity<String> getLoanStatus(@PathVariable String userId) {
+        String result = userClient.getUserStatus(userId);
         // This is a placeholder for the actual implementation
-        return ResponseEntity.ok("Loan status is currently unavailable.");
+        return ResponseEntity.ok("Loan status is currently unavailable." + result);
     }
 
     @PostMapping("/apply")
@@ -51,11 +58,17 @@ public class LoanServicesController {
         //Generate the unique id for loan
         String loanId = UUID.randomUUID().toString();
 
+        log.info("Applying for loan with ID: " + loanId);
         // Fetch user status from user-service
         String status = userClient.getUserStatus(request.getCustomerId());
+        log.info("User status for loan ID " + loanId + ": " + status);
 
         if ("INACTIVE".equalsIgnoreCase(status)) {
             return ResponseEntity.status(HttpStatus.LOCKED).body("User is not active");
+        }
+
+        if ("Unavailable".equals(status)) {
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Loan Rejected: User service unavailable.");
         }
 
         Loan loan = new Loan();

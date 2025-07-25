@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.gs.config.FeignClientInterceptor;
 
-@FeignClient(name = "user-service", configuration = FeignClientInterceptor.class) // Use registered service name in Eureka
+@FeignClient(name = "user-service", 
+              configuration = FeignClientInterceptor.class) // Use registered service name in Eureka
 public interface UserServiceClient {
 
     @GetMapping("/users/status/{userId}")

@@ -23,6 +23,11 @@ public class NotificationListener {
         try {
             // 🔁 Call user-service to get user email
             CustomerDTO user = userClient.getUserInfo(event.getCustomerId());
+            
+            if (user == null){
+                System.out.println("User service is unavailable, cannot send email.");
+                return; // Stop processing if user info is unavailable
+            }
 
             System.out.println("📬 Sending email to customer [" + event.getCustomerId() + "] for loan [" + event.getLoanId() + "] - Status: " + event.getStatus());
         

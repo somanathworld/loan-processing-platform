@@ -122,6 +122,9 @@ Send loan approval status to notification-service
 🔹 Phase 8: Distributed Logging & Tracing
 ✅ Focus: Observe and trace all microservice interactions.
 
+🔹 Phase 9: Resilience & Circuit Breaker
+✅ Focus: Prevent cascading failures in case one service is down.
+
 1. Parent Folder creation - Loan-processing-platform ✅ 
 2. Child folder creation - auth-service, user-service, discovery-servcie....
 3. Create a Spring boot project in all child services folder
