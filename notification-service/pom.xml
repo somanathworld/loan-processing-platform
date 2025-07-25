@@ -77,7 +77,15 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
-
+	    <dependency>
+     		<groupId>org.springframework.cloud</groupId>
+      		<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+    	</dependency>
+<dependency>
+			<groupId>io.vavr</groupId>
+			<artifactId>vavr</artifactId>
+			<version>0.10.4</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

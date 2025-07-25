@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Configuration
 public class FeignClientInterceptor implements RequestInterceptor {
-
+  
     @Override
     public void apply(RequestTemplate template) {
         ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
