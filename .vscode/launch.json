@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "K8s",
+            "request": "launch",
+            "mainClass": "com.example.rest_consumer.K8s",
+            "projectName": "rest-consumer"
+        },
+        {
+            "type": "java",
             "name": "LoanServiceApplication",
             "request": "launch",
             "mainClass": "com.gs.LoanServiceApplication",

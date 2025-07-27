@@ -23,5 +23,8 @@ COPY --from=builder /app/target/*.jar app.jar
 # Expose application port (optional, adjust if different)
 EXPOSE 8081
 
+# Set environment variable for the application (optional)
+ENV EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+
 # Run the jar
 ENTRYPOINT ["java", "-jar", "app.jar"]

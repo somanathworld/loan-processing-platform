@@ -23,5 +23,10 @@ COPY --from=builder /app/target/*.jar app.jar
 # Expose application port (optional, adjust if different)
 EXPOSE 8083
 
+# Set environment variable for the application (optional)
+ENV EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+ENV ZIPKIN_BASE_URL=http://zipkin:9411/api/v2/spans
+ENV SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+
 # Run the jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
