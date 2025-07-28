@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: discovery-server
-        image: discovery-server:1.0
+        image: somanath123/discovery-server:1.0
         ports:
         - containerPort: 8761
         env:

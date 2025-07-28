@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Set DOCKER_HUB variable to your username"
+DOCKER_HUB=somanath123
+
 echo "🚀 Starting Minikube..."
 minikube start
 
@@ -7,11 +10,16 @@ echo "🔧 Configuring Docker environment to use Minikube's Docker daemon..."
 eval $(minikube docker-env)
 
 echo "🐳 Building Docker images..."
-docker build -t discovery-server:1.0 ./discovery-server
-docker build -t loan-service:1.0 ./loan-service
-docker build -t auth-service:1.0 ./auth-service
-docker build -t user-service:1.0 ./user-service
-docker build -t api-gateway:1.0 ./api-gateway
+docker build -t $DOCKER_HUB/discovery-server:1.0 ./discovery-server
+docker push $DOCKER_HUB/discovery-server:1.0
+docker build -t $DOCKER_HUB/loan-service:1.0 ./loan-service
+docker push $DOCKER_HUB/loan-service:1.0
+docker build -t $DOCKER_HUB/auth-service:1.0 ./auth-service
+docker push $DOCKER_HUB/auth-service:1.0
+docker build -t $DOCKER_HUB/user-service:1.0 ./user-service
+docker push $DOCKER_HUB/user-service:1.0
+docker build -t $DOCKER_HUB/api-gateway:1.0 ./api-gateway
+docker push $DOCKER_HUB/api-gateway:1.0
 
 echo "📦 Applying Kubernetes deployment and service files from ./k8s/..."
 
