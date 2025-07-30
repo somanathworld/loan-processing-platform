@@ -122,9 +122,60 @@ Send loan approval status to notification-service
 🔹 Phase 8: Distributed Logging & Tracing
 ✅ Focus: Observe and trace all microservice interactions.
 
+🔹 Phase 9: Resilience & Circuit Breaker
+✅ Focus: Prevent cascading failures in case one service is down.
+
 1. Parent Folder creation - Loan-processing-platform ✅ 
 2. Child folder creation - auth-service, user-service, discovery-servcie....
 3. Create a Spring boot project in all child services folder
 4. Create demo template for all the child sevice : rest endpoints to check whther request are successfully parsed.
 5. Create Dockerfile  and docker-compose file in parent folder for checking all child services for integrating with each other.
 6. Perform coding as per the phases as mentioned above
+
+Kubernetes start
+----------------
+minikube start
+
+eval $(minikube docker-env)
+
+docker build -t discovery-server:1.0 ./discovery-server
+
+docker build -t loan-service:1.0 ./loan-service
+
+docker build -t auth-service:1.0 ./auth-service
+
+docker build -t user-service:1.0 ./user-service
+
+docker build -t api-gateway:1.0 ./api-gateway
+
+kubectl apply -f discovery-deployment.yaml
+
+kubectl apply -f discover-service.yaml
+
+kubectl apply -f loan-deployment.yaml
+
+kubectl apply -f loan-service.yaml
+
+kubectl apply -f auth-deployment.yaml
+
+kubectl apply -f auth-service.yaml
+
+kubectl apply -f user-deployment.yaml
+
+kubectl apply -f user-service.yaml
+
+kubectl apply -f zipkin-deployment.yaml
+
+kubectl apply -f zipkin-service.yaml
+
+kubectl apply -f zookeeper-deployment.yaml
+
+kubectl apply -f zookeeper-service.yaml
+
+kubectl apply -f kafka-deployment.yaml
+
+kubectl apply -f kafka-service.yaml
+
+kubectl get pods
+
+minikube service api-gateway --url

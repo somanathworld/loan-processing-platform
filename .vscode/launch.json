@@ -6,6 +6,41 @@
     "configurations": [
         {
             "type": "java",
+            "name": "K8s",
+            "request": "launch",
+            "mainClass": "com.example.rest_consumer.K8s",
+            "projectName": "rest-consumer"
+        },
+        {
+            "type": "java",
+            "name": "LoanServiceApplication",
+            "request": "launch",
+            "mainClass": "com.gs.LoanServiceApplication",
+            "projectName": "loan-service-demo"
+        },
+        {
+            "type": "java",
+            "name": "LoanServiceDemoApplication",
+            "request": "launch",
+            "mainClass": "com.gs.LoanServiceDemoApplication",
+            "projectName": "loan-service-demo"
+        },
+        {
+            "type": "java",
+            "name": "LoanServiceApplication",
+            "request": "launch",
+            "mainClass": "com.gs.LoanServiceApplication",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
+            "name": "DemoApplication",
+            "request": "launch",
+            "mainClass": "com.example.demo.DemoApplication",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
             "name": "CreditScoreServiceApplication",
             "request": "launch",
             "mainClass": "com.gs.CreditScoreServiceApplication",

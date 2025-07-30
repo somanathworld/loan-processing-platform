@@ -116,7 +116,7 @@ public class RestConsumer {
     }
 
     public String loanStatus(String token) {
-        String url = "http://localhost:8080/loans/status"; // Change to your loan status endpoint
+        String url = "http://localhost:8080/loans/status/fail"; // Change to your loan status endpoint
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token); // Sets "Authorization: Bearer <token>"
         HttpEntity<String> request = new HttpEntity<>(headers);
@@ -169,21 +169,19 @@ public class RestConsumer {
         String token = client.login("john1", "12345");
         if (token != null) {
             System.out.println("Login successful, token: " + token);
-            client.getProtectedResource(token);
-            client.getProtectedResource2(token);
-            // client.getProtectedResource3(token);
-            // client.registerCustomer(token);
-            // client.uploadKYC(token, "68714419089e5f073d531f41",
-            //         "/workspaces/loan-processing-platform/docker-compose.yml");
-            // client.loanStatus(token);
-            // client.applyForLoan(token, "687b29e94e36203261e8194d" , 30000.00);
-            // try{
-            //     Thread.sleep(7000);
-            // }catch(Exception ex){
-            //     ex.printStackTrace();
-            // }
-            // client.getCreditScore(token, "687b29e94e36203261e8194d");
-            // client.approveLoan(token, "6836d5dd-38e9-4686-a7a0-878761827ce9");
+            client.getProtectedResource3(token);
+            client.registerCustomer(token);
+            client.uploadKYC(token, "68714419089e5f073d531f41",
+                    "/workspaces/loan-processing-platform/docker-compose.yml");
+            client.loanStatus(token);
+            client.applyForLoan(token, "68714419089e5f073d531f41" , 30000.00);
+            try{
+                Thread.sleep(7000);
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+            client.getCreditScore(token, "687b29e94e36203261e8194d");
+            client.approveLoan(token, "6836d5dd-38e9-4686-a7a0-878761827ce9");
            
         } else {
             System.out.println("Login failed");
